@@ -1,0 +1,50 @@
+﻿@model RestaurantsIndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Liste des restaurants</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nom
+            </th>
+            <th>
+                Dernière visite
+            </th>
+            <th>
+                Note (/20)
+            </th>
+            <th>
+                Avis
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Restaurants)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.note.DateLastVisite)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.note.note)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.note.CommentaireNote)
+                </td>
+                <td>
+                    <a asp-action="NoteEdit" asp-route-id="@item.ID">Modifier la Note</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
