@@ -36,6 +36,10 @@ namespace NUnitTestProject1
             appPath = Directory.GetParent(Directory.GetParent(Directory.GetParent(appPath.ToString()).ToString()).ToString());
             var here = appPath + @"\NUnitTestProject1\bin\Debug\netcoreapp3.0\myDb3.db";
             var dest = appPath + @"\WebApplication1\bin\Debug\netcoreapp3.0\myDb3.db";
+            if (File.Exists(dest))
+            {
+                File.Delete(dest);
+            }
             File.Copy(here, dest);
 
             Assert.IsTrue(File.Exists(dest));
